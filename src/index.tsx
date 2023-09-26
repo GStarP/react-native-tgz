@@ -17,6 +17,16 @@ const Tgz = NativeModules.Tgz
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return Tgz.multiply(a, b);
+/**
+ * @param archivePath .tgz file path
+ * @param targetPath target dir path
+ * @example decompress("test.tgz", "temp") will create a directory "temp/test"
+ * @attention auto cover existing files!!!
+ * @returns targetPath
+ */
+export function decompress(
+  archivePath: string,
+  targetPath: string
+): Promise<string> {
+  return Tgz.decompress(archivePath, targetPath);
 }

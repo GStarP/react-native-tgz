@@ -1,13 +1,34 @@
 import * as React from 'react';
+import * as FS from 'expo-file-system';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-tgz';
+import { decompress } from 'react-native-tgz';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [result, setResult] = React.useState<string>('');
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    FS.readDirectoryAsync(FS.documentDirectory!)
+      .then((res) => setResult(res.toString()))
+      .then(() =>
+        FS.downloadAsync(
+          'https://registry.npmjs.org/@board-game-toolbox/plugin-template/-/plugin-template-0.1.3.tgz',
+          FS.documentDirectory + 'plugin-template.tgz'
+        )
+      )
+      .then(() => FS.readDirectoryAsync(FS.documentDirectory!))
+      .then((res) => setResult(res.toString()))
+      .then(() =>
+        decompress(
+          FS.documentDirectory + 'plugin-template.tgz',
+          FS.documentDirectory ?? ''
+        )
+      )
+      .then(() => FS.readDirectoryAsync(FS.documentDirectory!))
+      .then((res) => setResult(res.toString()))
+      .catch((e) => {
+        console.error(e);
+      });
   }, []);
 
   return (
