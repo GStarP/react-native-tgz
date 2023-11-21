@@ -2,20 +2,25 @@
 
 decompress .tgz in react-native
 
+## You MUST Know
+
+- can work with expo-filesystem
+- only support decompress
+- only for Android
+- only for RN's old architecture
+
 ## Installation
 
 ```sh
-npm install react-native-tgz
+npm install @gstarp/react-native-tgz
 ```
 
 ## Usage
 
 ```js
-import { multiply } from 'react-native-tgz';
+import { decompress } from '@gstarp/react-native-tgz';
 
-// ...
-
-const result = await multiply(3, 7);
+decompress('example.tgz', '/data/tmp');
 ```
 
 ## Contributing

@@ -1,5 +1,5 @@
 {
-  "name": "react-native-tgz",
+  "name": "@gstarp/react-native-tgz",
   "version": "0.1.0",
   "description": "decompress .tgz in react-native",
   "main": "lib/commonjs/index",
@@ -37,8 +37,9 @@
   },
   "keywords": [
     "react-native",
-    "ios",
-    "android"
+    "android",
+    "tgz",
+    "decompress"
   ],
   "repository": "https://github.com/GStarP/react-native-tgz",
   "author": "gstarp <1700066935@qq.com> (https://github.com/GStarP)",
